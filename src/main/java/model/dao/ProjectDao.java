@@ -116,17 +116,72 @@ public class ProjectDao implements IProjectDao {
         
         return projectList;
     }
+	
+	
+	
 
 	@Override
 	public Project update(Project p) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+        Connection cn = SingletonConnection.getConnection();
+        
+        try {
+            PreparedStatement ps = cn.prepareStatement(
+                "UPDATE Project SET nom = ?, description = ?, dateDebut = ?, dateFin = ?, budget = ? WHERE id_project = ?"
+            );
+            ps.setString(1, p.getNom());
+            ps.setString(2, p.getDescription());
+            ps.setDate(3, p.getDateDebut());
+            ps.setDate(4, p.getDateFin());
+            ps.setDouble(5, p.getBudget());
+            ps.setInt(6, p.getId_project());
+            int rowsAffected = ps.executeUpdate();
+            
+            if (rowsAffected > 0) {
+                System.out.println("Project with ID " + p.getId_project() + " was updated successfully.");
+            } else {
+                System.out.println("No project found with ID " + p.getId_project());
+            }
+            
+            ps.close();
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+        return p;
+    }
+	
+	
+	
 
 	@Override
-	public void deleteProject(int id) {
-		// TODO Auto-generated method stub
-		
+    public void deleteProject(int id) {
+        Connection cn = SingletonConnection.getConnection();
+        
+        try {
+            PreparedStatement ps = cn.prepareStatement(
+                "DELETE FROM Project WHERE id_project = ?"
+            );
+            ps.setInt(1, id);
+            int rowsAffected = ps.executeUpdate();
+            
+            if (rowsAffected > 0) {
+                System.out.println("Project with ID " + id + " was deleted successfully.");
+            } else {
+                System.out.println("No project found with ID " + id);
+            }
+            
+            ps.close();
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        }
+   
+	
+	
+	
+	
 	}
 
 }
