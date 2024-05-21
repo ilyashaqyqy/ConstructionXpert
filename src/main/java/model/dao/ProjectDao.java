@@ -1,10 +1,14 @@
 package model.dao;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
+  
 
+import model.dao.SingletonConnection;
 import model.entities.Project;
 
 public class ProjectDao implements IProjectDao {
@@ -27,7 +31,13 @@ public class ProjectDao implements IProjectDao {
 	            ps.setDouble(5, p.getBudget());
 	            ps.executeUpdate();
 	            
-	            ps.close(); 
+	            ResultSet rs = ps.getGeneratedKeys();
+	            if (rs.next()) {
+	                p.setId_project(rs.getInt(1));
+	            }
+	            
+	            rs.close();
+	            ps.close();
 	            
 	        } catch (SQLException e) {
 	            e.printStackTrace();
@@ -38,8 +48,37 @@ public class ProjectDao implements IProjectDao {
 
 	@Override
 	public List<Project> getAllproject() {
-		// TODO Auto-generated method stub
-		return null;
+	
+		 Connection cn = SingletonConnection.getConnection();
+	        List<Project> projectList = new ArrayList<>();
+	        
+	        try {
+	            PreparedStatement ps = cn.prepareStatement("SELECT * FROM Project");
+	            ResultSet rs = ps.executeQuery();
+	            
+	            while (rs.next()) {
+	                Project project = new Project();
+	                project.setId_project(rs.getInt("id_project")); // Assuming the id column is named "id_project"
+	                project.setNom(rs.getString("nom"));
+	                project.setDescription(rs.getString("description"));
+	                project.setDateDebut(rs.getDate("dateDebut"));
+	                project.setDateFin(rs.getDate("dateFin"));
+	                project.setBudget(rs.getDouble("budget"));
+	                
+	                projectList.add(project);
+	            }
+	            
+	            rs.close();
+	            ps.close();
+	            
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	        
+	        return projectList;
+			
+			
+
 	}
 
 	@Override
