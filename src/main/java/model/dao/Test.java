@@ -11,23 +11,23 @@ public class Test {
         ProjectDao projectDAO = new ProjectDao();
 
 
-//        Project project = new Project();
-//        project.setNom("New Project");
-//        project.setDescription("Description of the new project");
-//        project.setDateDebut(new java.sql.Date(new Date(0).getTime()));
-//        project.setDateFin(new java.sql.Date(System.currentTimeMillis() + 86400000L)); // 1 day later
-//        project.setBudget(10000.00);
-//
-//
-//        Project savedProject = projectDAO.save(project);
-//
-//
-//        if (savedProject != null) {
-//            System.out.println("Project saved successfully!");
-//
-//        } else {
-//            System.out.println("Failed to save the project.");
-//        }
+        Project project = new Project();
+        project.setNom("New Project");
+        project.setDescription("Description of the new project");
+        project.setDateDebut(new java.sql.Date(new Date(0).getTime()));
+        project.setDateFin(new java.sql.Date(System.currentTimeMillis() + 86400000L)); // 1 day later
+        project.setBudget(10000.00);
+
+
+        Project savedProject = projectDAO.save(project);
+
+
+        if (savedProject != null) {
+            System.out.println("Project saved successfully!");
+
+        } else {
+            System.out.println("Failed to save the project.");
+        }
    
     
 //        ProjectDao projectDao = new ProjectDao();
@@ -70,20 +70,34 @@ public class Test {
 //        }
         
         
-        testDeleteProject(1); // Change the ID as needed for your tests
+//        testDeleteProject(1); // Change the ID as needed for your tests
+//    }
+//
+//    public static void testDeleteProject(int id) {
+//        ProjectDao projectDao = new ProjectDao();
+//        projectDao.deleteProject(id);
+//   
+//    
+        Project project = new Project();
+        project.setId_project(2); // Change the ID to the project you want to update
+        project.setNom("Marjan");
+        project.setDescription("Marjan Description");
+        project.setDateDebut(new Date(System.currentTimeMillis()));
+        project.setDateFin(new Date(System.currentTimeMillis() + 86400000L)); // 1 day later
+        project.setBudget(20000.00);
+        
+        testUpdateProject(project);
     }
 
-    public static void testDeleteProject(int id) {
+    public static void testUpdateProject(Project project) {
         ProjectDao projectDao = new ProjectDao();
-        projectDao.deleteProject(id);
-   
-    
+        projectDao.update(project);
+        
+        
+        
     }
         
-    
-    
-    
-    
+ 
     
     }
 
