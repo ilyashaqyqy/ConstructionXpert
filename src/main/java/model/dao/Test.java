@@ -30,13 +30,34 @@ public class Test {
 //        }
    
     
-        ProjectDao projectDao = new ProjectDao();
-        List<Project> projects = projectDao.getAllproject();
+//        ProjectDao projectDao = new ProjectDao();
+//        List<Project> projects = projectDao.getAllproject();
+//        
+//        if (projects.isEmpty()) {
+//            System.out.println("No projects found.");
+//        } else {
+//            System.out.println("List of Projects:");
+//            for (Project project : projects) {
+//                System.out.println("ID: " + project.getId_project());
+//                System.out.println("Name: " + project.getNom());
+//                System.out.println("Description: " + project.getDescription());
+//                System.out.println("Start Date: " + project.getDateDebut());
+//                System.out.println("End Date: " + project.getDateFin());
+//                System.out.println("Budget: " + project.getBudget());
+//                System.out.println("---------------------------");
+//            }
+//        }
+    
         
+        String mc = "carfour"; // Define the search term here
+
+        ProjectDao projectDao = new ProjectDao();
+        List<Project> projects = projectDao.projectParMc(mc);
+
         if (projects.isEmpty()) {
-            System.out.println("No projects found.");
+            System.out.println("No projects found for keyword: " + mc);
         } else {
-            System.out.println("List of Projects:");
+            System.out.println("List of Projects matching keyword '" + mc + "':");
             for (Project project : projects) {
                 System.out.println("ID: " + project.getId_project());
                 System.out.println("Name: " + project.getNom());
@@ -47,6 +68,7 @@ public class Test {
                 System.out.println("---------------------------");
             }
         }
-    
+        
+        
     }
 }
