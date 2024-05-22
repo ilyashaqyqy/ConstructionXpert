@@ -8,25 +8,28 @@
 <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 <!-- Font Awesome CDN -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
 <title>Gestion de Projet</title>
 </head>
 <body class="bg-gray-100">
 <%-- <%@ include file="header.jsp" %> --%>
 <div class="container mx-auto mt-10">
     <div class="bg-white shadow-md rounded-lg">
-        <div class="bg-purple-800 text-white text-lg px-4 py-2 rounded-t-lg">Liste des projets</div>
+        <div class="bg-purple-900 text-white text-lg px-4 py-2 rounded-t-lg">Liste des projets</div>
         <div class="p-4">
             <!-- Search Form -->
             <form method="get" action="" class="mb-4">
                 <div class="flex items-center">
-                    <input type="text" name="mc" placeholder="Rechercher..." class="px-4 py-2 border rounded" />
-                    <button type="submit" class="bg-purple-600 text-white px-2 py-1 ml-2 rounded hover:bg-purple-700">Rechercher</button>
+<input type="text" name="mc" placeholder="Rechercher..." class="px-3 py-2 border rounded-md" style="margin-right: -1px;">
+ 
+                    <button type="submit" class="bg-purple-900 text-white px-2 py-1 ml-2 rounded hover:bg-purple-700"><i class="fa-solid fa-magnifying-glass"></i></button>
+                
                 </div>
             </form>
-            
+            <!-- Add Project Button -->
+            <div class="mb-4">
+                <a href="addProject.jsp" class="bg-green-500 text-white px-2 py-1 rounded-md hover:bg-green-600">Ajouter Project</a>
+            </div>
             <table class="table-auto w-full mt-4">
                 <thead>
                     <tr class="text-center">
@@ -49,7 +52,7 @@
                             <td class="px-4 py-2">${project.dateFin}</td>
                             <td class="px-4 py-2">${project.budget}</td>
                             <td class="px-4 py-2">
-                                <a href="modifier.action?id=${project.id_project}" class="bg-green-500 text-white px-2 py-1 rounded hover:bg-green-600"><i class="fa-solid fa-pen-to-square"></i></a>
+                                <a href="modifier.action?id=${project.id_project}" class="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600"><i class="fa-solid fa-pen-to-square"></i></a>
                                 <a href="?action=delete&id=${project.id_project}" class="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600" onclick="return confirm('Êtes-vous sûr ?')"><i class="fa-solid fa-trash"></i></a>
                             </td>
                         </tr>
