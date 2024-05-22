@@ -24,7 +24,7 @@
 
   <servlet>
     <servlet-name>ProjectServlet</servlet-name>
-    <servlet-class>ProjectServlet</servlet-class>
+    <servlet-class>web.ProjectServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>ProjectServlet</servlet-name>

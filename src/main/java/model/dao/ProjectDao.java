@@ -88,7 +88,7 @@ public class ProjectDao implements IProjectDao {
         
         try {
             PreparedStatement ps = cn.prepareStatement(
-                "SELECT * FROM Project WHERE nom LIKE ? OR description LIKE ?"
+                "SELECT * FROM Project WHERE LOWER(nom) LIKE LOWER(?) OR LOWER(description) LIKE LOWER(?)"
             );
             String keyword = "%" + mc + "%";
             ps.setString(1, keyword);
