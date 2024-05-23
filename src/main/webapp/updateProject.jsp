@@ -6,6 +6,8 @@
     <title>Update Project</title>
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+   
     <script>
         function validateForm() {
             var idProject = document.getElementById("id_project").value;
@@ -73,9 +75,17 @@
             </div>
             <div class="flex items-center justify-end">
                 <button type="submit" class="bg-blue-900 hover:bg-blue-800 text-white font-bold py-1 px-4 rounded focus:outline-none focus:shadow-outline">Mettre à jour</button>
-            </div>
+                     
+           </div>
+
         </form>
+        
+                <a href="ConstructionXperte" class="text-blue-900 mt-4 inline-block" style="font-weight: 700;">
+            <i class="fa-solid fa-circle-chevron-left" style="font-size: 26px;"></i>
+        </a>
     </div>
+
+    
 </div>
 </body>
 </html>

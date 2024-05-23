@@ -12,14 +12,14 @@
 <body class="bg-gray-100">
     <div class="max-w-3xl mx-auto mt-8">
         <div class="bg-white shadow-md rounded-lg p-6">
-            <h1 class="text-xl font-semibold mb-4">Project Details</h1>
+            <h1 class="text-xl font-semibold mb-4">Détails du projet</h1>
             <c:if test="${project ne null}">
                 <table class="min-w-full bg-white">
                     <tbody>
-                        <tr class="bg-gray-100">
-                            <td class="w-1/3 px-6 py-4 font-semibold">ID</td>
-                            <td class="px-6 py-4">${project.id_project}</td>
-                        </tr>
+<!--                         <tr class="bg-gray-100"> -->
+<!--                             <td class="w-1/3 px-6 py-4 font-semibold">ID</td> -->
+<%--                             <td class="px-6 py-4">${project.id_project}</td> --%>
+<!--                         </tr> -->
                         <tr>
                             <td class="w-1/3 px-6 py-4 font-semibold">Name</td>
                             <td class="px-6 py-4">${project.nom}</td>
@@ -29,11 +29,11 @@
                             <td class="px-6 py-4">${project.description}</td>
                         </tr>
                         <tr>
-                            <td class="w-1/3 px-6 py-4 font-semibold">Start Date</td>
+                            <td class="w-1/3 px-6 py-4 font-semibold">Date de début</td>
                             <td class="px-6 py-4">${project.dateDebut}</td>
                         </tr>
                         <tr class="bg-gray-100">
-                            <td class="w-1/3 px-6 py-4 font-semibold">End Date</td>
+                            <td class="w-1/3 px-6 py-4 font-semibold">Date de fin</td>
                             <td class="px-6 py-4">${project.dateFin}</td>
                         </tr>
                         <tr>

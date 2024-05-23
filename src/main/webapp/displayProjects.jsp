@@ -22,9 +22,9 @@
             <!-- Search Form -->
             <form method="get" action="" class="mb-4">
                 <div class="flex items-center">
-<input type="text" name="mc" placeholder="Rechercher..." class="px-5 py-2 border rounded-md" style="margin-right: -1px;">
+<input type="text" name="mc" placeholder="Rechercher..." class="px-8 py-2 border rounded-full" style="margin-right: -1px;">
  
-                    <button type="submit" class="bg-blue-900 text-white px-3 py-2 ml-2 rounded hover:bg-blue-800"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    <button type="submit" class="bg-blue-900 text-white px-3 py-2 ml-2 rounded-full hover:bg-blue-800"><i class="fa-solid fa-magnifying-glass"></i></button>
                 
                 </div>
             </form>
