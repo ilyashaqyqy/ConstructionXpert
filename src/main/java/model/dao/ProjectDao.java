@@ -184,4 +184,33 @@ public class ProjectDao implements IProjectDao {
 	
 	}
 
+	@Override
+	 public Project getProjectById(int id) {
+        Connection cn = SingletonConnection.getConnection();
+        Project project = null;
+
+        try {
+            PreparedStatement ps = cn.prepareStatement("SELECT * FROM Project WHERE id_project = ?");
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                project = new Project();
+                project.setId_project(rs.getInt("id_project"));
+                project.setNom(rs.getString("nom"));
+                project.setDescription(rs.getString("description"));
+                project.setDateDebut(rs.getDate("dateDebut"));
+                project.setDateFin(rs.getDate("dateFin"));
+                project.setBudget(rs.getDouble("budget"));
+            }
+
+            rs.close();
+            ps.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return project;
+    }
+
 }

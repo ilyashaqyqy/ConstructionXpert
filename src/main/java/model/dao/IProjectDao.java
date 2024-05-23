@@ -12,5 +12,5 @@ public interface IProjectDao {
 	public List <Project> projectParMc(String mc);
 	public Project update (Project p);
 	public void deleteProject(int id);
-	
+	public Project getProjectById(int id);
 }

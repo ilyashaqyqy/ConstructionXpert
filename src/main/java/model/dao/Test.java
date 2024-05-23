@@ -30,23 +30,23 @@ public class Test {
 //        }
    
     
-        ProjectDao projectDao = new ProjectDao();
-        List<Project> projects = projectDao.getAllproject();
-        
-        if (projects.isEmpty()) {
-            System.out.println("No projects found.");
-        } else {
-            System.out.println("List of Projects:");
-            for (Project project : projects) {
-                System.out.println("ID: " + project.getId_project());
-                System.out.println("Name: " + project.getNom());
-                System.out.println("Description: " + project.getDescription());
-                System.out.println("Start Date: " + project.getDateDebut());
-                System.out.println("End Date: " + project.getDateFin());
-                System.out.println("Budget: " + project.getBudget());
-                System.out.println("---------------------------");
-            }
-        }
+//        ProjectDao projectDao = new ProjectDao();
+//        List<Project> projects = projectDao.getAllproject();
+//        
+//        if (projects.isEmpty()) {
+//            System.out.println("No projects found.");
+//        } else {
+//            System.out.println("List of Projects:");
+//            for (Project project : projects) {
+//                System.out.println("ID: " + project.getId_project());
+//                System.out.println("Name: " + project.getNom());
+//                System.out.println("Description: " + project.getDescription());
+//                System.out.println("Start Date: " + project.getDateDebut());
+//                System.out.println("End Date: " + project.getDateFin());
+//                System.out.println("Budget: " + project.getBudget());
+//                System.out.println("---------------------------");
+//            }
+//        }
     
         
 //        String mc = "New"; // Define the search term here
@@ -78,26 +78,49 @@ public class Test {
 //        projectDao.deleteProject(id);
 //   
 //    
-        Project project = new Project();
-        project.setId_project(2);
-        project.setNom("Marjan");
-        project.setDescription("Marjan Description");
-        project.setDateDebut(new Date(System.currentTimeMillis()));
-        project.setDateFin(new Date(System.currentTimeMillis() + 86400000L)); // 1 day later
-        project.setBudget(20000.00);
+//        Project project = new Project();
+//        project.setId_project(2);
+//        project.setNom("Marjan");
+//        project.setDescription("Marjan Description");
+//        project.setDateDebut(new Date(System.currentTimeMillis()));
+//        project.setDateFin(new Date(System.currentTimeMillis() + 86400000L)); // 1 day later
+//        project.setBudget(20000.00);
+//        
+//        testUpdateProject(project);
+//    }
+//
+//    public static void testUpdateProject(Project project) {
+//        ProjectDao projectDao = new ProjectDao();
+//        projectDao.update(project);
+//        
+//        
+//        
+//    }
         
-        testUpdateProject(project);
-    }
+    
+            // Create an instance of ProjectDao
+            ProjectDao projectDao = new ProjectDao();
 
-    public static void testUpdateProject(Project project) {
-        ProjectDao projectDao = new ProjectDao();
-        projectDao.update(project);
-        
-        
-        
-    }
-        
- 
+            // ID of the project to retrieve (replace this with an existing project ID from your database)
+            int projectId = 7;
+
+            // Call the getProjectById method
+            Project project = projectDao.getProjectById(projectId);
+
+            // Check if project is null (i.e., if no project was found with the given ID)
+            if (project == null) {
+                System.out.println("No project found with ID: " + projectId);
+            } else {
+                // Print the details of the retrieved project
+                System.out.println("Project found:");
+                System.out.println("ID: " + project.getId_project());
+                System.out.println("Nom: " + project.getNom());
+                System.out.println("Description: " + project.getDescription());
+                System.out.println("Date de début: " + project.getDateDebut());
+                System.out.println("Date de fin: " + project.getDateFin());
+                System.out.println("Budget: " + project.getBudget());
+            }
+        }
     
     }
 

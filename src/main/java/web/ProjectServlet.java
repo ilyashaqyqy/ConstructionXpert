@@ -58,16 +58,26 @@ public class ProjectServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
 
-        if (action != null && action.equals("delete")) {
-            // Handle delete action
-            int id = Integer.parseInt(request.getParameter("id"));
-            projectDao.deleteProject(id);
-            response.sendRedirect(request.getContextPath() + "/");
-        } else if (action != null && action.equals("add")) {
-            // Forward to add project page
-            request.getRequestDispatcher("addProject.jsp").forward(request, response);
+        if (action != null) {
+            if (action.equals("delete")) {
+                int id = Integer.parseInt(request.getParameter("id"));
+                projectDao.deleteProject(id);
+                response.sendRedirect(request.getContextPath() + "/");
+            } else if (action.equals("add")) {
+                request.getRequestDispatcher("addProject.jsp").forward(request, response);
+            } else if (action.equals("edit")) {
+                int id = Integer.parseInt(request.getParameter("id"));
+                Project project = projectDao.getProjectById(id);
+                request.setAttribute("project", project);
+                request.getRequestDispatcher("updateProject.jsp").forward(request, response);
+            } else if (action.equals("details")) { // Add this condition for showing project details
+                int id = Integer.parseInt(request.getParameter("id"));
+                Project project = projectDao.getProjectById(id);
+                request.setAttribute("project", project);
+                request.getRequestDispatcher("projectDetails.jsp").forward(request, response);
+                return; // Stop further processing
+            }
         } else {
-            // Handle display and search actions
             String mc = request.getParameter("mc");
             List<Project> projects;
 
@@ -82,31 +92,46 @@ public class ProjectServlet extends HttpServlet {
         }
     }
 
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Handling form submission for adding a project
-        String nom = request.getParameter("nom");
-        String description = request.getParameter("description");
-        String dateDebutStr = request.getParameter("dateDebut");
-        String dateFinStr = request.getParameter("dateFin");
-        String budgetStr = request.getParameter("budget");
+        String action = request.getParameter("action");
 
-        // Convert date strings to Date objects
-        // (You can add validation and error handling here)
-        java.sql.Date dateDebut = java.sql.Date.valueOf(dateDebutStr);
-        java.sql.Date dateFin = java.sql.Date.valueOf(dateFinStr);
+        if (action != null && action.equals("update")) {
+        
+        	
+            int id = Integer.parseInt(request.getParameter("id_project"));
+            String nom = request.getParameter("nom");
+            String description = request.getParameter("description");
+            String dateDebutStr = request.getParameter("dateDebut");
+            String dateFinStr = request.getParameter("dateFin");
+            String budgetStr = request.getParameter("budget");
 
-        // Convert budget string to double
-        double budget = Double.parseDouble(budgetStr);
+            java.sql.Date dateDebut = java.sql.Date.valueOf(dateDebutStr);
+            java.sql.Date dateFin = java.sql.Date.valueOf(dateFinStr);
+            double budget = Double.parseDouble(budgetStr);
 
-        // Create the Project object
-        Project project = new Project(nom, description, dateDebut, dateFin, budget);
+            Project project = new Project(id, nom, description, dateDebut, dateFin, budget);
+            projectDao.update(project);
 
-        // Save the project using the DAO
-        projectDao.save(project);
+            response.sendRedirect(request.getContextPath() + "/");
+        } else {
+           
+        	
+            String nom = request.getParameter("nom");
+            String description = request.getParameter("description");
+            String dateDebutStr = request.getParameter("dateDebut");
+            String dateFinStr = request.getParameter("dateFin");
+            String budgetStr = request.getParameter("budget");
 
-   
-        // Redirect back to the main project list page
-        response.sendRedirect(request.getContextPath() + "/");
+            java.sql.Date dateDebut = java.sql.Date.valueOf(dateDebutStr);
+            java.sql.Date dateFin = java.sql.Date.valueOf(dateFinStr);
+            double budget = Double.parseDouble(budgetStr);
+
+            Project project = new Project(nom, description, dateDebut, dateFin, budget);
+            projectDao.save(project);
+
+            response.sendRedirect(request.getContextPath() + "/");
+        }
     }
 }
