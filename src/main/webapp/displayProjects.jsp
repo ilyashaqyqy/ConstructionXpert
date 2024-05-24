@@ -12,61 +12,69 @@
 <title>Gestion de Projet</title>
 </head>
 <body class="bg-gray-100">
-<%-- <%@ include file="header.jsp" %> --%>
-<div class="container mx-auto mt-10">
-    <div class="bg-white shadow-md rounded-lg">
-        <div class="bg-blue-900 text-white text-lg px-4 py-2 rounded-t-lg">Liste des projets</div>
-       
-       
-        <div class="p-4">
-            <!-- Search Form -->
-            <form method="get" action="" class="mb-4">
-                <div class="flex items-center">
-<input type="text" name="mc" placeholder="Rechercher..." class="px-8 py-2 border rounded-full" style="margin-right: -1px;">
- 
-                    <button type="submit" class="bg-blue-900 text-white px-3 py-2 ml-2 rounded-full hover:bg-blue-800"><i class="fa-solid fa-magnifying-glass"></i></button>
-                
-                </div>
-            </form>
+    <!-- Navbar -->
+    <nav class="bg-white shadow-md p-4">
+        <div class="container mx-auto flex justify-between items-center">
+<!--             <div class="text-blue-900 text-lg font-semibold">Gestion de Projet</div> -->
+            <ul class="flex space-x-4 ">
+                <li><a href="ConstructionXperte" class="text-blue-900 bg-white shadow-md hover:bg-gray-200 px-3 py-2 rounded">Home</a></li>
+                <li><a href="tache.jsp" class="text-blue-900 bg-white shadow-md hover:bg-gray-200 px-3 py-2 rounded">Tache</a></li>
+                <li><a href="listResources.jsp" class="text-blue-900 bg-white shadow-md hover:bg-gray-200 px-3 py-2 rounded">Ressource</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container mx-auto mt-10">
+        <div class="bg-white shadow-md rounded-lg">
+<!--             <div class="bg-blue-900 text-white text-lg px-4 py-2 rounded-t-lg">Liste des projets</div> -->
             
-            <br>
-            <!-- Add Project Button -->
-            <div class="mb-4">
-       
-                <a href="addProject.jsp" class="bg-blue-900 text-white font-bold py-1 px-4 rounded-full hover:bg-blue-800"><i class="fa-solid fa-plus"></i></a>
-            </div>
-            <table class="table-auto w-full mt-4">
-                <thead>
-                    <tr class="text-center">
-                        <th class="px-4 py-2">ID</th>
-                        <th class="px-4 py-2">Nom</th>
-                        <th class="px-4 py-2">Description</th>
-                        <th class="px-4 py-2">Date de début</th>
-                        <th class="px-4 py-2">Date de fin</th>
-                        <th class="px-4 py-2">Budget</th>
-                        <th class="px-4 py-2">Actions</th>
-                    </tr>
-                </thead>
-                <tbody class="bg-white divide-y divide-gray-200 text-center">
-                    <c:forEach var="project" items="${projects}">
-                        <tr class="hover:bg-gray-50">
-                            <td class="px-4 py-2">${project.id_project}</td>
-                            <td class="px-4 py-2">${project.nom}</td>
-                            <td class="px-4 py-2">${project.description}</td>
-                            <td class="px-4 py-2">${project.dateDebut}</td>
-                            <td class="px-4 py-2">${project.dateFin}</td>
-                            <td class="px-4 py-2">${project.budget}</td>
-                            <td class="px-4 py-2">
-                               <a href="ProjectServlet?action=details&id=${project.id_project}" class="bg-blue-900 text-white px-3 py-1 rounded-full hover:bg-blue-1000"><i class="fa-solid fa-info"></i></a>
-                                <a href="updateProject.jsp?id=${project.id_project}" class="bg-blue-500 text-white px-2 py-1 rounded-full hover:bg-blue-600"><i class="fa-solid fa-pen-to-square"></i></a>
-                                <a href="?action=delete&id=${project.id_project}" class="bg-red-500 text-white px-2 py-1 rounded-full hover:bg-red-600" onclick="return confirm('Êtes-vous sûr ?')"><i class="fa-solid fa-trash"></i></a>
-                            </td>
+            <div class="p-4">
+                <!-- Search Form -->
+                <form method="get" action="" class="mb-4">
+                    <div class="flex items-center">
+                      <input type="text" name="mc" placeholder="Rechercher..." class="bg-white text-blue-900 border  px-8 py-2 rounded-full shadow-md " style="margin-right: -1px;">
+                        <button type="submit" class="text-blue-900 bg-white shadow-md hover:bg-gray-200 px-3 py-2 ml-2 rounded-full"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    </div>
+                </form>
+                
+                <br>
+                <!-- Add Project Button -->
+                <div class="mb-4">
+                    <a href="addProject.jsp" class="text-blue-900 bg-white shadow-md font-bold py-1 px-4 rounded-full hover:bg-gray-200"><i class="fa-solid fa-plus"></i></a>
+                </div>
+                <table class="table-auto w-full mt-4">
+                    <thead>
+                        <tr class="text-center">
+                            <!-- <th class="px-4 py-2">ID</th> -->
+                            <th class="px-4 py-2">Nom</th>
+                            <!-- <th class="px-4 py-2">Description</th> -->
+                            <th class="px-4 py-2">Date de début</th>
+                            <th class="px-4 py-2">Date de fin</th>
+                            <th class="px-4 py-2">Budget</th>
+                            <th class="px-4 py-2">Actions</th>
                         </tr>
-                    </c:forEach>
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody class="bg-white divide-y divide-gray-200 text-center">
+                        <c:forEach var="project" items="${projects}">
+                            <tr class="hover:bg-gray-50">
+                                <!-- <td class="px-4 py-2">${project.id_project}</td> -->
+                                <td class="px-4 py-2">${project.nom}</td>
+                                <!-- <td class="px-4 py-2">${project.description}</td> -->
+                                <td class="px-4 py-2">${project.dateDebut}</td>
+                                <td class="px-4 py-2">${project.dateFin}</td>
+                                <td class="px-4 py-2">${project.budget}</td>
+                                <td class="px-4 py-2">
+                                    <a href="ProjectServlet?action=details&id=${project.id_project}" class="text-blue-900 bg-white shadow-md px-3 py-1 rounded-full hover:bg-gray-200"><i class="fa-solid fa-info"></i></a>
+                                    <a href="updateProject.jsp?id=${project.id_project}" class="text-blue-900 bg-white shadow-md px-2 py-1 rounded-full hover:bg-gray-200"><i class="fa-solid fa-pen-to-square"></i></a>
+                                    <a href="?action=delete&id=${project.id_project}" class="text-blue-900 bg-white shadow-md px-2 py-1 rounded-full hover:bg-gray-200" onclick="return confirm('Êtes-vous sûr ?')"><i class="fa-solid fa-trash"></i></a>
+                                </td>
+                            </tr>
+                        </c:forEach>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
-</div>
 </body>
 </html>

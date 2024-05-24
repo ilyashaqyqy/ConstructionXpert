@@ -10,16 +10,16 @@
    
     <script>
         function validateForm() {
-            var idProject = document.getElementById("id_project").value;
+//             var idProject = document.getElementById("id_project").value;
             var nom = document.getElementById("nom").value;
             var description = document.getElementById("description").value;
             var dateDebut = document.getElementById("dateDebut").value;
             var dateFin = document.getElementById("dateFin").value;
             var budget = document.getElementById("budget").value;
 
-            if (idProject === "" || isNaN(idProject) || parseInt(idProject) <= 0) {
-                alert("ID du projet doit être un nombre positif.");
-                return false;
+//             if (idProject === "" || isNaN(idProject) || parseInt(idProject) <= 0) {
+//                 alert("ID du projet doit être un nombre positif.");
+//                 return false;
             }
             if (nom.trim() === "") {
                 alert("Nom du projet est requis.");
@@ -50,7 +50,7 @@
     <div class="bg-white shadow-md rounded-lg p-6">
         <form action="ProjectServlet?action=update" method="post" onsubmit="return validateForm()">
             <div class="mb-6">
-                <label for="id_project" class="block text-gray-700 text-sm font-bold mb-2">ID du projet:</label>
+<!--                 <label for="id_project" class="block text-gray-700 text-sm font-bold mb-2">ID du projet:</label> -->
                 <input type="text" id="id_project" name="id_project" value="${project.id_project}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
             </div>
             <div class="mb-6">

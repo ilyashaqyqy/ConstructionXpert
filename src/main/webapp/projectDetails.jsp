@@ -10,6 +10,21 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body class="bg-gray-100">
+   
+   
+ 
+    <!-- Navbar -->
+    <nav class="bg-white shadow-md p-4">
+        <div class="container mx-auto flex justify-between items-center">
+<!--             <div class="text-blue-900 text-lg font-semibold">Gestion de Projet</div> -->
+            <ul class="flex space-x-4 ">
+                <li><a href="ConstructionXperte" class="text-blue-900 bg-white shadow-md hover:bg-gray-200 px-3 py-2 rounded">Home</a></li>
+                <li><a href="tache.jsp" class="text-blue-900 bg-white shadow-md hover:bg-gray-200 px-3 py-2 rounded">Tache</a></li>
+                <li><a href="ressource.jsp" class="text-blue-900 bg-white shadow-md hover:bg-gray-200 px-3 py-2 rounded">Ressource</a></li>
+            </ul>
+        </div>
+    </nav>
+   
     <div class="max-w-3xl mx-auto mt-8">
         <div class="bg-white shadow-md rounded-lg p-6">
             <h1 class="text-xl font-semibold mb-4">Détails du projet</h1>
