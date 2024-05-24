@@ -8,7 +8,7 @@ public interface ITacheDao {
 
     Tache save(Tache tache);
 
-    List<Tache> getAllTaches();
+    List<Tache> getAllTasks();
 
     List<Tache> tachesParMc(String mc);
 
