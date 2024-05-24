@@ -6,21 +6,14 @@
     <title>Update Project</title>
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-   
     <script>
         function validateForm() {
-//             var idProject = document.getElementById("id_project").value;
             var nom = document.getElementById("nom").value;
             var description = document.getElementById("description").value;
             var dateDebut = document.getElementById("dateDebut").value;
             var dateFin = document.getElementById("dateFin").value;
             var budget = document.getElementById("budget").value;
 
-//             if (idProject === "" || isNaN(idProject) || parseInt(idProject) <= 0) {
-//                 alert("ID du projet doit être un nombre positif.");
-//                 return false;
-            }
             if (nom.trim() === "") {
                 alert("Nom du projet est requis.");
                 return false;
@@ -46,13 +39,20 @@
     </script>
 </head>
 <body>
+
+
+<%
+    String id = request.getParameter("id");
+
+%>
+
+
+
+
 <div class="max-w-md mx-auto mt-10">
     <div class="bg-white shadow-md rounded-lg p-6">
         <form action="ProjectServlet?action=update" method="post" onsubmit="return validateForm()">
-            <div class="mb-6">
-<!--                 <label for="id_project" class="block text-gray-700 text-sm font-bold mb-2">ID du projet:</label> -->
-                <input type="text" id="id_project" name="id_project" value="${project.id_project}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-            </div>
+            <input type="hidden" id="id_project" name="id_project" value="<%= id %>">
             <div class="mb-6">
                 <label for="nom" class="block text-gray-700 text-sm font-bold mb-2">Nom du projet:</label>
                 <input type="text" id="nom" name="nom" value="${project.nom}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
@@ -75,17 +75,12 @@
             </div>
             <div class="flex items-center justify-end">
                 <button type="submit" class="bg-blue-900 hover:bg-blue-800 text-white font-bold py-1 px-4 rounded focus:outline-none focus:shadow-outline">Mettre à jour</button>
-                     
-           </div>
-
+            </div>
         </form>
-        
-                <a href="ConstructionXperte" class="text-blue-900 mt-4 inline-block" style="font-weight: 700;">
+        <a href="ConstructionXperte" class="text-blue-900 mt-4 inline-block" style="font-weight: 700;">
             <i class="fa-solid fa-circle-chevron-left" style="font-size: 26px;"></i>
         </a>
     </div>
-
-    
 </div>
 </body>
 </html>

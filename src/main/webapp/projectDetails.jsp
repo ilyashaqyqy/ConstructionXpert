@@ -27,7 +27,13 @@
    
     <div class="max-w-3xl mx-auto mt-8">
         <div class="bg-white shadow-md rounded-lg p-6">
-            <h1 class="text-xl font-semibold mb-4">Détails du projet</h1>
+<!--             <h1 class="text-xl font-semibold mb-4">Détails du projet</h1> -->
+                        <!-- Add Project Button -->
+            <div class="mb-4 flex justify-between items-center">
+              
+                <!-- Add Task Button -->
+                <a href="AddTask.jsp" class="text-blue-900 bg-white shadow-md font-bold py-1 px-4 rounded-full hover:bg-gray-200"><i class="fa-solid fa-plus"></i> Ajouter Tache</a>
+            </div>
             <c:if test="${project ne null}">
                 <table class="min-w-full bg-white">
                     <tbody>

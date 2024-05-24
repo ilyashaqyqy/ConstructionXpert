@@ -24,7 +24,7 @@ public class TacheDaoTest {
         System.out.println("Updated Tache: " + savedTache1);
 
         // Test delete method
-        tacheDao.delete(savedTache1.getId_tache());
-        System.out.println("Deleted Tache with ID " + savedTache1.getId_tache());
+//        tacheDao.delete(savedTache1.getId_tache());
+//        System.out.println("Deleted Tache with ID " + savedTache1.getId_tache());
     }
 }
