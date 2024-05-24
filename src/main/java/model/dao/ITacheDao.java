@@ -14,7 +14,7 @@ public interface ITacheDao {
 
     void update(Tache tache);
 
-    void deleteTache(int id);
+    void delete(int id);
 
     Tache getTacheById(int id);
 }

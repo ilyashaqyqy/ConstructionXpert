@@ -109,10 +109,18 @@ public class TacheDao implements ITacheDao {
     }
 
 	@Override
-	public void deleteTache(int id) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void delete(int id_tache) {
+        Connection connection = SingletonConnection.getConnection();
+
+        try {
+            PreparedStatement ps = connection.prepareStatement("DELETE FROM Tache WHERE id_tache = ?");
+            ps.setInt(1, id_tache);
+            ps.executeUpdate();
+            ps.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
 	@Override
 	public Tache getTacheById(int id) {
