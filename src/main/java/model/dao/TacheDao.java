@@ -85,10 +85,28 @@ public class TacheDao implements ITacheDao {
 	}
 
 	@Override
-	public void update(Tache tache) {
-		// TODO Auto-generated method stub
-		
-	}
+    public void update(Tache tache) {
+        Connection connection = SingletonConnection.getConnection();
+
+        try {
+            PreparedStatement ps = connection.prepareStatement(
+                    "UPDATE Tache SET id_projet = ?, id_ressource = ?, nom = ?, description = ?, dateDebut = ?, dateFin = ?, status = ? WHERE id_tache = ?"
+            );
+            ps.setInt(1, tache.getId_projet());
+            ps.setInt(2, tache.getId_ressource());
+            ps.setString(3, tache.getNom());
+            ps.setString(4, tache.getDescription());
+            ps.setDate(5, tache.getDateDebut());
+            ps.setDate(6, tache.getDateFin());
+            ps.setString(7, tache.getStatus());
+            ps.setInt(8, tache.getId_tache());
+
+            ps.executeUpdate();
+            ps.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
 	@Override
 	public void deleteTache(int id) {
