@@ -23,39 +23,41 @@
 
     <div class="max-w-7xl mx-auto mt-8 flex space-x-4">
         <!-- Project Details Card -->
-        <div class="bg-white p-6 rounded-lg shadow-lg w-1/2">
-            <h2 class="text-2xl font-bold mb-4 text-gray-800">Détails du Projet</h2>
-            <c:if test="${project ne null}">
-                <div class="mb-6 border-b border-gray-200 pb-4">
-                    <div class="mb-4">
-                        <h3 class="text-lg font-semibold text-gray-700">Nom</h3>
-                        <p class="text-gray-600">${project.nom}</p>
-                    </div>
-                    <div class="mb-4">
-                        <h3 class="text-lg font-semibold text-gray-700">Description</h3>
-                        <p class="text-gray-600">${project.description}</p>
-                    </div>
-                    <div class="flex justify-between mb-4">
-                        <div>
-                            <h3 class="text-lg font-semibold text-gray-700">Date de Début</h3>
-                            <p class="text-gray-600">${project.dateDebut}</p>
-                        </div>
-                        <div>
-                            <h3 class="text-lg font-semibold text-gray-700">Date de Fin</h3>
-                            <p class="text-gray-600">${project.dateFin}</p>
-                        </div>
-                    </div>
-                    <div>
-                        <h3 class="text-lg font-semibold text-gray-700">Budget</h3>
-                        <p class="text-gray-600">${project.budget}</p>
-                    </div>
-                </div>
-            </c:if>
-            <!-- Add Task Button -->
-            <div class="flex justify-end">
-                <a href="ProjectServlet?action=addTask&projectId=${project.getId_project()}" class="text-white bg-blue-900 shadow-md hover:bg-blue-800 px-3 py-2 rounded-full"><i class="fa-solid fa-plus"></i> Ajouter Tâche</a>
+<div class="bg-white p-6 rounded-lg shadow-lg w-1/2">
+    <h2 class="text-2xl font-bold mb-4 text-gray-800">Détails du Projet</h2>
+    <c:if test="${project ne null}">
+        <div class="grid grid-cols-2 gap-4">
+            <div>
+                <h3 class="text-lg font-semibold text-gray-700">Nom</h3>
+                <p class="text-gray-600">${project.nom}</p>
+            </div>
+            <div>
+                <h3 class="text-lg font-semibold text-gray-700">Description</h3>
+                <p class="text-gray-600">${project.description}</p>
+            </div>
+            <div>
+                <h3 class="text-lg font-semibold text-gray-700">Date de Début</h3>
+                <p class="text-gray-600">${project.dateDebut}</p>
+            </div>
+            <div>
+                <h3 class="text-lg font-semibold text-gray-700">Date de Fin</h3>
+                <p class="text-gray-600">${project.dateFin}</p>
+            </div>
+            <div>
+                <h3 class="text-lg font-semibold text-gray-700">Budget</h3>
+                <p class="text-gray-600">${project.budget}</p>
             </div>
         </div>
+    </c:if>
+    <!-- Add Task Button -->
+    <div class="flex justify-end mt-6">
+        <a href="ProjectServlet?action=addTask&projectId=${project.getId_project()}" class="text-white bg-blue-900 shadow-md hover:bg-blue-800 px-3 py-2 rounded-full">
+            <i class="fa-solid fa-plus"></i> Ajouter Tâche
+        </a>
+    </div>
+</div>
+
+
 
         <!-- Task Details Card -->
         <div class="bg-white p-6 rounded-lg shadow-lg w-1/2">
