@@ -18,5 +18,7 @@ public interface ITacheDao {
 
     Tache getTacheById(int id);
     public void updateTaskStatus(int taskId, String status);
+    
+    public List<Tache> getTasksByProjectId(int projectId) ;
 }
 

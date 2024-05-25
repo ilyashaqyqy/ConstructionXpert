@@ -1,6 +1,7 @@
 package model.dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -134,6 +135,36 @@ public class TacheDao implements ITacheDao {
 	    } catch (SQLException e) {
 	        e.printStackTrace();
 	    }
+	}
+	
+	public List<Tache> getTasksByProjectId(int projectId) {
+	    List<Tache> tasks = new ArrayList<>();
+	    String query = "SELECT * FROM tache WHERE id_projet = ?";
+	    Connection connection = SingletonConnection.getConnection();
+
+	    try (PreparedStatement statement = connection.prepareStatement(query)) {
+	        statement.setInt(1, projectId);
+	        try (ResultSet resultSet = statement.executeQuery()) {
+	            while (resultSet.next()) {
+	                int id = resultSet.getInt("id_tache");
+	                int idProjet = resultSet.getInt("id_projet");
+	                int idRessource = resultSet.getInt("id_ressource");
+	                String nom = resultSet.getString("nom");
+	                String description = resultSet.getString("description");
+	                Date dateDebut = resultSet.getDate("dateDebut");
+	                Date dateFin = resultSet.getDate("dateFin");
+	                String status = resultSet.getString("status");
+	                
+	                // Create a Tache object and add it to the list
+	                Tache task = new Tache(id, idProjet, idRessource, nom, description, dateDebut, dateFin, status);
+	                tasks.add(task);
+	            }
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+
+	    return tasks;
 	}
 
 	@Override

@@ -54,9 +54,18 @@ public class ProjectServlet extends HttpServlet {
             case "details":
                 int detailsId = Integer.parseInt(request.getParameter("id"));
                 Project projectDetails = projectDao.getProjectById(detailsId);
+                
+                // Create an instance of TacheDao
+                TacheDao tacheDao = new TacheDao();
+                
+                // Fetch tasks for the project using the instance of TacheDao
+                List<Tache> tasks = tacheDao.getTasksByProjectId(detailsId); 
+                
                 request.setAttribute("project", projectDetails);
+                request.setAttribute("tasks", tasks); // Pass tasks to the JSP
                 request.getRequestDispatcher("projectDetails.jsp").forward(request, response);
                 break;
+
 
             case "list":
             default:
@@ -70,6 +79,8 @@ public class ProjectServlet extends HttpServlet {
                 request.setAttribute("projects", projects);
                 request.getRequestDispatcher("displayProjects.jsp").forward(request, response);
                 break;
+                
+                
 
             case "addTask": // Handle addTask action
                 int projectId = Integer.parseInt(request.getParameter("projectId"));
@@ -78,6 +89,8 @@ public class ProjectServlet extends HttpServlet {
                 request.setAttribute("resources", resources); // Pass resources to the addTask.jsp
                 request.getRequestDispatcher("addTask.jsp").forward(request, response);
                 break;
+                
+               
         }
     }
 
@@ -126,10 +139,21 @@ public class ProjectServlet extends HttpServlet {
 
             // Redirect back to the project details page
             response.sendRedirect(request.getContextPath() + "/?action=details&id=" + projectId);
-            
+
         } else if ("changeTaskStatus".equals(action)) { // Add task status change functionality
-            int taskId = Integer.parseInt(request.getParameter("taskId"));
+            String taskIdString = request.getParameter("taskId");
+            int taskId = -1; // Default value in case taskIdString is null
+            if (taskIdString != null && !taskIdString.isEmpty()) {
+                taskId = Integer.parseInt(taskIdString);
+            }
             String status = request.getParameter("status");
+
+            // Retrieve projectId from request parameters
+            String projectIdString = request.getParameter("projectId");
+            int projectId = -1; // Default value in case projectIdString is null
+            if (projectIdString != null && !projectIdString.isEmpty()) {
+                projectId = Integer.parseInt(projectIdString);
+            }
 
             // Update the status of the task using TacheDao
             TacheDao tacheDao = new TacheDao();
@@ -137,7 +161,10 @@ public class ProjectServlet extends HttpServlet {
 
             // Redirect back to the project details page
             response.sendRedirect(request.getContextPath() + "/?action=details&id=" + projectId);
-        } else {
+        }
+
+
+           else {
             String nom = request.getParameter("nom");
             String description = request.getParameter("description");
             String dateDebutStr = request.getParameter("dateDebut");
