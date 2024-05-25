@@ -66,18 +66,7 @@ public class ProjectServlet extends HttpServlet {
                 request.getRequestDispatcher("projectDetails.jsp").forward(request, response);
                 break;
 
-            case "list":
-            default:
-                String mc = request.getParameter("mc");
-                List<Project> projects;
-                if (mc != null && !mc.isEmpty()) {
-                    projects = projectDao.projectParMc(mc);
-                } else {
-                    projects = projectDao.getAllproject();
-                }
-                request.setAttribute("projects", projects);
-                request.getRequestDispatcher("displayProjects.jsp").forward(request, response);
-                break;
+
                 
             case "tache":
                 // Fetch all tasks
@@ -95,6 +84,30 @@ public class ProjectServlet extends HttpServlet {
                 request.setAttribute("resources", resources); // Pass resources to the addTask.jsp
                 request.getRequestDispatcher("addTask.jsp").forward(request, response);
                 break;
+                
+            case "listResources":
+                // Fetch all resources
+                List<Ressource> allResources = ressourceDao.getAllressource();
+                
+                // Forward resources to the resource.jsp
+                request.setAttribute("resources", allResources);
+                request.getRequestDispatcher("resource.jsp").forward(request, response);
+                break;
+
+                
+            case "list":
+            default:
+                String mc = request.getParameter("mc");
+                List<Project> projects;
+                if (mc != null && !mc.isEmpty()) {
+                    projects = projectDao.projectParMc(mc);
+                } else {
+                    projects = projectDao.getAllproject();
+                }
+                request.setAttribute("projects", projects);
+                request.getRequestDispatcher("displayProjects.jsp").forward(request, response);
+                break;
+                
         }
     }
 
