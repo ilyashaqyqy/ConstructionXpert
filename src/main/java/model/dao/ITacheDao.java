@@ -17,5 +17,6 @@ public interface ITacheDao {
     void delete(int id);
 
     Tache getTacheById(int id);
+    public void updateTaskStatus(int taskId, String status);
 }
 

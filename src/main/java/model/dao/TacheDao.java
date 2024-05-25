@@ -121,6 +121,20 @@ public class TacheDao implements ITacheDao {
             e.printStackTrace();
         }
     }
+	
+	
+	public void updateTaskStatus(int taskId, String status) {
+	    Connection connection = SingletonConnection.getConnection();
+	    try {
+	        PreparedStatement ps = connection.prepareStatement("UPDATE Tache SET status = ? WHERE id_tache = ?");
+	        ps.setString(1, status);
+	        ps.setInt(2, taskId);
+	        ps.executeUpdate();
+	        ps.close();
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	}
 
 	@Override
 	public Tache getTacheById(int id) {

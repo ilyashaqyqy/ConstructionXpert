@@ -126,6 +126,17 @@ public class ProjectServlet extends HttpServlet {
 
             // Redirect back to the project details page
             response.sendRedirect(request.getContextPath() + "/?action=details&id=" + projectId);
+            
+        } else if ("changeTaskStatus".equals(action)) { // Add task status change functionality
+            int taskId = Integer.parseInt(request.getParameter("taskId"));
+            String status = request.getParameter("status");
+
+            // Update the status of the task using TacheDao
+            TacheDao tacheDao = new TacheDao();
+            tacheDao.updateTaskStatus(taskId, status);
+
+            // Redirect back to the project details page
+            response.sendRedirect(request.getContextPath() + "/?action=details&id=" + projectId);
         } else {
             String nom = request.getParameter("nom");
             String description = request.getParameter("description");
