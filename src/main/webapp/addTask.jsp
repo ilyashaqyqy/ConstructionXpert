@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Add Task</title>
+    <title>Ajouter une tâche</title>
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body>
@@ -15,36 +15,37 @@
             <input type="hidden" name="action" value="addTask">
             <input type="hidden" name="projectId" value="${projectId}">
             <div class="mb-4">
-                <label for="nom" class="block text-gray-700 text-sm font-bold mb-2">Task Name:</label>
-                <input type="text" id="nom" name="nom" placeholder="Enter task name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                <label for="nom" class="block text-gray-700 text-sm font-bold mb-2">Nom de la tâche :</label>
+                <input type="text" id="nom" name="nom" placeholder="Entrer le nom de la tâche" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
             </div>
             <div class="mb-4">
-                <label for="description" class="block text-gray-700 text-sm font-bold mb-2">Description:</label>
-                <textarea id="description" name="description" placeholder="Enter task description" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"></textarea>
+                <label for="description" class="block text-gray-700 text-sm font-bold mb-2">Description :</label>
+                <textarea id="description" name="description" placeholder="Entrer la description de la tâche" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"></textarea>
             </div>
             <div class="mb-4">
-                <label for="dateDebut" class="block text-gray-700 text-sm font-bold mb-2">Start Date:</label>
+                <label for="dateDebut" class="block text-gray-700 text-sm font-bold mb-2">Date de début :</label>
                 <input type="date" id="dateDebut" name="dateDebut" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
             </div>
             <div class="mb-4">
-                <label for="dateFin" class="block text-gray-700 text-sm font-bold mb-2">End Date:</label>
+                <label for="dateFin" class="block text-gray-700 text-sm font-bold mb-2">Date de fin :</label>
                 <input type="date" id="dateFin" name="dateFin" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
             </div>
             <div class="mb-4">
-                <label for="status" class="block text-gray-700 text-sm font-bold mb-2">Status:</label>
-                <input type="text" id="status" name="status" placeholder="Enter task status" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                <label for="status" class="block text-gray-700 text-sm font-bold mb-2">Statut :</label>
+    <input type="text" id="status" name="status" value="A faire" readonly class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+
             </div>
             <div class="mb-4">
-                <label for="resourceId" class="block text-gray-700 text-sm font-bold mb-2">Select Resource:</label>
+                <label for="resourceId" class="block text-gray-700 text-sm font-bold mb-2">Sélectionner la ressource :</label>
                 <select id="resourceId" name="resourceId" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                    <option value="">Select a resource...</option>
+                    <option value="">Sélectionner une ressource...</option>
                     <c:forEach var="resource" items="${resources}">
                         <option value="${resource.id_ressource}">${resource.nom}</option>
                     </c:forEach>
                 </select>
             </div>
             <div class="flex items-center justify-end">
-                <button type="submit" class="bg-purple-900 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Add Task</button>
+                <button type="submit" class="text-white bg-blue-900  hover:bg-blue-800 px-3 py-2 ml-2 rounded-full">Ajouter la tâche</button>
             </div>
         </form>
     </div>

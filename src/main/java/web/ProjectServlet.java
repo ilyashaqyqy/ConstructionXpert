@@ -30,8 +30,11 @@ public class ProjectServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
         if (action == null) {
-            action = "list"; // Default action
+            action = "list"; 
         }
+
+        
+        TacheDao tacheDao = new TacheDao();
 
         switch (action) {
             case "delete":
@@ -55,9 +58,6 @@ public class ProjectServlet extends HttpServlet {
                 int detailsId = Integer.parseInt(request.getParameter("id"));
                 Project projectDetails = projectDao.getProjectById(detailsId);
                 
-                // Create an instance of TacheDao
-                TacheDao tacheDao = new TacheDao();
-                
                 // Fetch tasks for the project using the instance of TacheDao
                 List<Tache> tasks = tacheDao.getTasksByProjectId(detailsId); 
                 
@@ -65,7 +65,6 @@ public class ProjectServlet extends HttpServlet {
                 request.setAttribute("tasks", tasks); // Pass tasks to the JSP
                 request.getRequestDispatcher("projectDetails.jsp").forward(request, response);
                 break;
-
 
             case "list":
             default:
@@ -80,7 +79,14 @@ public class ProjectServlet extends HttpServlet {
                 request.getRequestDispatcher("displayProjects.jsp").forward(request, response);
                 break;
                 
+            case "tache":
+                // Fetch all tasks
+                List<Tache> allTasks = tacheDao.getAllTasks();
                 
+                // Forward tasks to tache.jsp
+                request.setAttribute("tasks", allTasks);
+                request.getRequestDispatcher("tache.jsp").forward(request, response);
+                break;
 
             case "addTask": // Handle addTask action
                 int projectId = Integer.parseInt(request.getParameter("projectId"));
@@ -89,10 +95,9 @@ public class ProjectServlet extends HttpServlet {
                 request.setAttribute("resources", resources); // Pass resources to the addTask.jsp
                 request.getRequestDispatcher("addTask.jsp").forward(request, response);
                 break;
-                
-               
         }
     }
+
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

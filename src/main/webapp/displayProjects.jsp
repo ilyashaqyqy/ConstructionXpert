@@ -10,6 +10,9 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <title>Gestion de Projet</title>
+
+
+
 </head>
 <body class="bg-gray-100">
     <!-- Navbar -->
@@ -43,6 +46,9 @@
                 <div class="mb-4">
                     <a href="addProject.jsp" class="text-white bg-blue-900  hover:bg-blue-800 px-3 py-2 ml-2 rounded-full"><i class="fa-solid fa-plus"></i> Ajouter Projet</a>
                 </div>
+               
+           
+               
                 <table class="table-auto w-full mt-4">
                     <thead>
                         <tr class="text-center">
@@ -76,5 +82,7 @@
             </div>
         </div>
     </div>
+    
+   
 </body>
 </html>

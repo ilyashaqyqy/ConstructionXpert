@@ -4,7 +4,6 @@
 <html>
 <head>
     <title>Détails du Projet</title>
-    <!-- Include Tailwind CSS CDN -->
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -21,46 +20,44 @@
         </div>
     </nav>
 
-    <div class="max-w-7xl mx-auto mt-8 flex space-x-4">
+    <div class="max-w-7xl mx-auto mt-8 flex flex-col md:flex-row space-x-0 md:space-x-4">
         <!-- Project Details Card -->
-<div class="bg-white p-6 rounded-lg shadow-lg w-1/2">
-    <h2 class="text-2xl font-bold mb-4 text-gray-800">Détails du Projet</h2>
-    <c:if test="${project ne null}">
-        <div class="grid grid-cols-2 gap-4">
-            <div>
-                <h3 class="text-lg font-semibold text-gray-700">Nom</h3>
-                <p class="text-gray-600">${project.nom}</p>
-            </div>
-            <div>
-                <h3 class="text-lg font-semibold text-gray-700">Description</h3>
-                <p class="text-gray-600">${project.description}</p>
-            </div>
-            <div>
-                <h3 class="text-lg font-semibold text-gray-700">Date de Début</h3>
-                <p class="text-gray-600">${project.dateDebut}</p>
-            </div>
-            <div>
-                <h3 class="text-lg font-semibold text-gray-700">Date de Fin</h3>
-                <p class="text-gray-600">${project.dateFin}</p>
-            </div>
-            <div>
-                <h3 class="text-lg font-semibold text-gray-700">Budget</h3>
-                <p class="text-gray-600">${project.budget}</p>
+        <div class="bg-white p-6 rounded-lg shadow-lg w-full md:w-1/2 mb-4 md:mb-0">
+            <h2 class="text-2xl font-bold mb-4 text-gray-800">Détails du Projet</h2>
+            <c:if test="${project ne null}">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-700">Nom</h3>
+                        <p class="text-gray-600">${project.nom}</p>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-700">Description</h3>
+                        <p class="text-gray-600">${project.description}</p>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-700">Date de Début</h3>
+                        <p class="text-gray-600">${project.dateDebut}</p>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-700">Date de Fin</h3>
+                        <p class="text-gray-600">${project.dateFin}</p>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-700">Budget</h3>
+                        <p class="text-gray-600">${project.budget}</p>
+                    </div>
+                </div>
+            </c:if>
+            <!-- Add Task Button -->
+            <div class="flex justify-end mt-6">
+                <a href="ProjectServlet?action=addTask&projectId=${project.getId_project()}" class="text-white bg-blue-900 shadow-md hover:bg-blue-800 px-3 py-2 rounded-full">
+                    <i class="fa-solid fa-plus"></i> Ajouter Tâche
+                </a>
             </div>
         </div>
-    </c:if>
-    <!-- Add Task Button -->
-    <div class="flex justify-end mt-6">
-        <a href="ProjectServlet?action=addTask&projectId=${project.getId_project()}" class="text-white bg-blue-900 shadow-md hover:bg-blue-800 px-3 py-2 rounded-full">
-            <i class="fa-solid fa-plus"></i> Ajouter Tâche
-        </a>
-    </div>
-</div>
-
-
 
         <!-- Task Details Card -->
-        <div class="bg-white p-6 rounded-lg shadow-lg w-1/2">
+        <div class="bg-white p-6 rounded-lg shadow-lg w-full md:w-1/2">
             <h2 class="text-2xl font-bold mb-4 text-gray-800">Détails des Tâches</h2>
             <c:forEach var="task" items="${tasks}">
                 <div class="mb-6 border-b border-gray-200 pb-4">
@@ -75,7 +72,7 @@
                         ">${task.status}</span>
                     </div>
                     <p class="text-gray-600">${task.description}</p>
-                    <div class="flex justify-between mt-2">
+                    <div class="flex flex-col md:flex-row justify-between mt-2">
                         <div>
                             <span class="text-gray-500">Date de Début:</span>
                             <span class="text-gray-700 font-semibold">${task.dateDebut}</span>
@@ -98,6 +95,7 @@
                 </div>
             </c:forEach>
         </div>
-    </div>
+    
+    
 </body>
 </html>
