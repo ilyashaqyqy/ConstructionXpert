@@ -1,41 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://jakarta.ee/xml/ns/jakartaee" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd" version="6.0">
-  <servlet>
-    <servlet-name>ProjectServlet</servlet-name>
-    <servlet-class>web.ProjectServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ProjectServlet</servlet-name>
-    <url-pattern>/ProjectServlet</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>testservlat</display-name>
-    <servlet-name>testservlat</servlet-name>
-    <servlet-class>web.testservlat</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>testservlat</servlet-name>
-    <url-pattern>/testservlat</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>ProjectServlet</display-name>
-    <servlet-name>projectServlet</servlet-name>
-    <servlet-class>servlets.ProjectServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>projectServlet</servlet-name>
-    <url-pattern>/projectServlet</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>ResourceServlet</display-name>
-    <servlet-name>ResourceServlet</servlet-name>
-    <servlet-class>web.ResourceServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ResourceServlet</servlet-name>
-    <url-pattern>/ResourceServlet</url-pattern>
-  </servlet-mapping>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="https://jakarta.ee/xml/ns/jakartaee"
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
+         version="6.0">
+    
+    <servlet>
+        <servlet-name>ProjectServlet</servlet-name>
+        <servlet-class>web.ProjectServlet</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>ProjectServlet</servlet-name>
+        <url-pattern>/ProjectServlet</url-pattern>
+    </servlet-mapping>
+    
 </web-app>

@@ -41,11 +41,11 @@
                 <input type="text" id="budget" name="budget" placeholder="Entrez le budget du projet" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
             </div>
             <div class="flex items-center justify-end">
-                <button type="submit" class="bg-purple-900 hover:bg-purple-700 text-white font-bold py-1 px-4 rounded focus:outline-none focus:shadow-outline">Ajouter</button>
+                <button type="submit" class="text-white bg-blue-900  hover:bg-blue-800 px-3 py-2 ml-2 rounded-full ">Enregistrer</button>
             </div>
         </form>
         
-        <a href="ConstructionXperte" class="text-blue-900 mt-4 inline-block" style="font-weight: 700;">
+        <a href="ConstructionXperte" class="text-blue-900  px-3  font-bold" style="font-weight: 700;">
             <i class="fa-solid fa-circle-chevron-left" style="font-size: 26px;"></i>
         </a>
     </div>

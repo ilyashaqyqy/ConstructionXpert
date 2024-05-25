@@ -2,9 +2,10 @@ package web;
 
 import model.dao.ProjectDao;
 import model.dao.RessourceDao;
+import model.dao.TacheDao;
 import model.entities.Project;
 import model.entities.Ressource;
-
+import model.entities.Tache;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -69,6 +70,14 @@ public class ProjectServlet extends HttpServlet {
                 request.setAttribute("projects", projects);
                 request.getRequestDispatcher("displayProjects.jsp").forward(request, response);
                 break;
+
+            case "addTask": // Handle addTask action
+                int projectId = Integer.parseInt(request.getParameter("projectId"));
+                List<Ressource> resources = ressourceDao.getAllressource(); // Retrieve all resources
+                request.setAttribute("projectId", projectId);
+                request.setAttribute("resources", resources); // Pass resources to the addTask.jsp
+                request.getRequestDispatcher("addTask.jsp").forward(request, response);
+                break;
         }
     }
 
@@ -92,6 +101,31 @@ public class ProjectServlet extends HttpServlet {
             projectDao.update(project);
 
             response.sendRedirect(request.getContextPath() + "/");
+        } else if ("addTask".equals(action)) { // Add task functionality
+            int projectId = Integer.parseInt(request.getParameter("projectId"));
+            int resourceId = Integer.parseInt(request.getParameter("resourceId"));
+            String nom = request.getParameter("nom");
+            String description = request.getParameter("description");
+            String dateDebutStr = request.getParameter("dateDebut");
+            String dateFinStr = request.getParameter("dateFin");
+            String status = request.getParameter("status");
+
+            // Convert date strings to java.sql.Date objects
+            java.sql.Date dateDebut = java.sql.Date.valueOf(dateDebutStr);
+            java.sql.Date dateFin = java.sql.Date.valueOf(dateFinStr);
+
+
+            TacheDao tacheDao = new TacheDao();
+
+   
+            Tache tache = new Tache(projectId, resourceId, nom, description, dateDebut, dateFin, status);
+
+            // Save the task using TacheDao
+            Tache savedTache = tacheDao.save(tache);
+
+
+            // Redirect back to the project details page
+            response.sendRedirect(request.getContextPath() + "/?action=details&id=" + projectId);
         } else {
             String nom = request.getParameter("nom");
             String description = request.getParameter("description");

@@ -18,9 +18,9 @@
         <div class="container mx-auto flex justify-between items-center">
 <!--             <div class="text-blue-900 text-lg font-semibold">Gestion de Projet</div> -->
             <ul class="flex space-x-4 ">
-                <li><a href="ConstructionXperte" class="text-blue-900 bg-white shadow-md hover:bg-gray-200 px-3 py-2 rounded">Home</a></li>
-                <li><a href="tache.jsp" class="text-blue-900 bg-white shadow-md hover:bg-gray-200 px-3 py-2 rounded">Tache</a></li>
-                <li><a href="ressource.jsp" class="text-blue-900 bg-white shadow-md hover:bg-gray-200 px-3 py-2 rounded">Ressource</a></li>
+                <li><a href="ConstructionXperte" class="text-blue-900 bg-white shadow-md hover:bg-gray-200 px-3 py-2 rounded-full">Home</a></li>
+                <li><a href="tache.jsp" class="text-blue-900 bg-white shadow-md hover:bg-gray-200 px-3 py-2 rounded-full">Tache</a></li>
+                <li><a href="ressource.jsp" class="text-blue-900 bg-white shadow-md hover:bg-gray-200 px-3 py-2 rounded-full">Ressource</a></li>
             </ul>
         </div>
     </nav>
@@ -30,9 +30,9 @@
 <!--             <h1 class="text-xl font-semibold mb-4">Détails du projet</h1> -->
                         <!-- Add Project Button -->
             <div class="mb-4 flex justify-between items-center">
-              
                 <!-- Add Task Button -->
-                <a href="AddTask.jsp" class="text-blue-900 bg-white shadow-md font-bold py-1 px-4 rounded-full hover:bg-gray-200"><i class="fa-solid fa-plus"></i> Ajouter Tache</a>
+              <a href="ProjectServlet?action=addTask&projectId=${project.getId_project()}" class="text-white bg-blue-900 shadow-md hover:bg-blue-800 px-3 py-2 ml-2 rounded-full"><i class="fa-solid fa-plus"></i> Ajouter Tache</a>
+
             </div>
             <c:if test="${project ne null}">
                 <table class="min-w-full bg-white">
@@ -64,11 +64,6 @@
                     </tbody>
                 </table>
             </c:if>
-    <a href="ConstructionXperte" class="text-blue-900 mt-4 inline-block" style="font-weight: 700;">
-    <i class="fa-solid fa-circle-chevron-left" style="font-size: 26px;"></i>
-</a>
-
-
         </div>
     </div>
 </body>

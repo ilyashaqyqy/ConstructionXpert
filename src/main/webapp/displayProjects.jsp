@@ -17,9 +17,9 @@
         <div class="container mx-auto flex justify-between items-center">
 <!--             <div class="text-blue-900 text-lg font-semibold">Gestion de Projet</div> -->
             <ul class="flex space-x-4 ">
-                <li><a href="ConstructionXperte" class="text-blue-900 bg-white shadow-md hover:bg-gray-200 px-3 py-2 rounded">Home</a></li>
-                <li><a href="tache.jsp" class="text-blue-900 bg-white shadow-md hover:bg-gray-200 px-3 py-2 rounded">Tache</a></li>
-                <li><a href="listResources.jsp" class="text-blue-900 bg-white shadow-md hover:bg-gray-200 px-3 py-2 rounded">Ressource</a></li>
+                <li><a href="ConstructionXperte" class="text-blue-900 bg-white shadow-md hover:bg-gray-200 px-3 py-2 rounded-full">Home</a></li>
+                <li><a href="tache.jsp" class="text-blue-900 bg-white shadow-md hover:bg-gray-200 px-3 py-2 rounded-full">Tache</a></li>
+                <li><a href="ressource.jsp" class="text-blue-900 bg-white shadow-md hover:bg-gray-200 px-3 py-2 rounded-full">Ressource</a></li>
             </ul>
         </div>
     </nav>
@@ -34,25 +34,25 @@
                 <form method="get" action="" class="mb-4">
                     <div class="flex items-center">
                       <input type="text" name="mc" placeholder="Rechercher..." class="bg-white text-blue-900 border  px-8 py-2 rounded-full shadow-md " style="margin-right: -1px;">
-                        <button type="submit" class="text-blue-900 bg-white shadow-md hover:bg-gray-200 px-3 py-2 ml-2 rounded-full"><i class="fa-solid fa-magnifying-glass"></i></button>
+                        <button type="submit" class="text-blue-900 bg-white shadow-md hover:bg-gray-100 px-3 py-2 ml-2 rounded-full font-bold"><i class="fa-solid fa-magnifying-glass"></i> </button>
                     </div>
                 </form>
                 
                 <br>
                 <!-- Add Project Button -->
                 <div class="mb-4">
-                    <a href="addProject.jsp" class="text-blue-900 bg-white shadow-md font-bold py-1 px-4 rounded-full hover:bg-gray-200"><i class="fa-solid fa-plus"></i></a>
+                    <a href="addProject.jsp" class="text-white bg-blue-900  hover:bg-blue-800 px-3 py-2 ml-2 rounded-full"><i class="fa-solid fa-plus"></i> Ajouter Projet</a>
                 </div>
                 <table class="table-auto w-full mt-4">
                     <thead>
                         <tr class="text-center">
                             <!-- <th class="px-4 py-2">ID</th> -->
-                            <th class="px-4 py-2">Nom</th>
+                            <th class="px-4 py-2 text-blue-900">Nom</th>
                             <!-- <th class="px-4 py-2">Description</th> -->
-                            <th class="px-4 py-2">Date de début</th>
-                            <th class="px-4 py-2">Date de fin</th>
-                            <th class="px-4 py-2">Budget</th>
-                            <th class="px-4 py-2">Actions</th>
+                            <th class="px-4 py-2 text-blue-900">Date de début</th>
+                            <th class="px-4 py-2 text-blue-900">Date de fin</th>
+                            <th class="px-4 py-2 text-blue-900">Budget</th>
+                            <th class="px-4 py-2 text-blue-900">Actions</th>
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200 text-center">
