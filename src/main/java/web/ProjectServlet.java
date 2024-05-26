@@ -100,6 +100,12 @@ public class ProjectServlet extends HttpServlet {
                 break;
 
                 
+            case "deleteResource":
+                int resourceId = Integer.parseInt(request.getParameter("resourceId"));
+                ressourceDao.deleteRessource(resourceId);
+                response.sendRedirect(request.getContextPath() + "/ProjectServlet?action=listResources");
+                break;
+                
             case "list":
             default:
                 String mc = request.getParameter("mc");
@@ -201,7 +207,25 @@ public class ProjectServlet extends HttpServlet {
                 response.sendRedirect(request.getHeader("referer"));
             }
         }
+        
+        else if ("addResource".equals(action)) {
+            String nom = request.getParameter("nom");
+            String type = request.getParameter("type");
+            int quantite = Integer.parseInt(request.getParameter("quantite"));
+            String infoFournisseur = request.getParameter("infoFournisseur");
 
+            Ressource newResource = new Ressource(nom, type, quantite, infoFournisseur);
+            ressourceDao.save(newResource);
+
+            response.sendRedirect(request.getContextPath() + "/ProjectServlet?action=listResources");
+        }
+        
+        
+        else if ("deleteResource".equals(action)) {
+            int resourceId = Integer.parseInt(request.getParameter("resourceId"));
+            ressourceDao.deleteRessource(resourceId);
+            response.sendRedirect(request.getContextPath() + "/ProjectServlet?action=listResources");
+        }
         
        else {
             String nom = request.getParameter("nom");
