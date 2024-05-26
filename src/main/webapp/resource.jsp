@@ -12,13 +12,16 @@
 <title>Gestion de Projet</title>
 </head>
 <body class="bg-gray-100">
+
+
     <!-- Navbar -->
 <nav class="bg-white shadow-md p-4">
     <div class="container mx-auto flex justify-between items-center">
         <ul class="flex space-x-4 ">
             <li><a href="ConstructionXperte" class="text-blue-900 bg-white shadow-md hover:bg-gray-200 px-3 py-2 rounded-full">Home</a></li>
+                        <li><a href="ProjectServlet?action=listResources" class="text-blue-900 bg-white shadow-md hover:bg-gray-200 px-3 py-2 rounded-full">Ressource</a></li>
             <li><a href="ProjectServlet?action=tache" class="text-blue-900 bg-white shadow-md hover:bg-gray-200 px-3 py-2 rounded-full">Tache</a></li>
-            <li><a href="ProjectServlet?action=listResources" class="text-blue-900 bg-white shadow-md hover:bg-gray-200 px-3 py-2 rounded-full">Ressource</a></li>
+
         </ul>
     </div>
 </nav>
@@ -57,7 +60,7 @@
                     <form action="ProjectServlet" method="post" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cette ressource ?');">
                         <input type="hidden" name="action" value="deleteResource">
                         <input type="hidden" name="resourceId" value="${resource.id_ressource}">
-                        <button type="submit" class="text-red-600 hover:text-red-900">
+                        <button type="submit" class="text-blue-900 hover:text-red-900">
                             <i class="fas fa-trash"></i>
                         </button>
                     </form>

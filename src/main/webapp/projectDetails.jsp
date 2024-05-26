@@ -1,10 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
-<html lang="fr">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Détails du Projet</title>
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -16,55 +14,53 @@
         <div class="container mx-auto flex justify-between items-center">
             <ul class="flex space-x-4">
                 <li><a href="ConstructionXperte" class="text-blue-900 bg-white shadow-md hover:bg-gray-200 px-3 py-2 rounded-full">Home</a></li>
-                <li><a href="ProjectServlet?action=tache" class="text-blue-900 bg-white shadow-md hover:bg-gray-200 px-3 py-2 rounded-full">Tâche</a></li>
+                <li><a href="ProjectServlet?action=tache" class="text-blue-900 bg-white shadow-md hover:bg-gray-200 px-3 py-2 rounded-full">Tache</a></li>
                 <li><a href="ProjectServlet?action=listResources" class="text-blue-900 bg-white shadow-md hover:bg-gray-200 px-3 py-2 rounded-full">Ressource</a></li>
             </ul>
         </div>
     </nav>
 
     <!-- Main Content -->
-    <div class="container mx-auto mt-8">
-        <!-- Project Details Card -->
-        <div class="flex flex-col md:flex-row gap-4">
-            <div class="bg-white p-6 rounded-lg shadow-lg w-full md:w-2/2">
-                <h2 class="text-2xl font-bold mb-4 text-gray-800">Détails du Projet</h2>
-                <!-- Project details content -->
-                <c:if test="${project ne null}">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div>
-                            <h3 class="text-lg font-semibold text-gray-700">Nom</h3>
-                            <p class="text-gray-600">${project.nom}</p>
-                        </div>
-                        <div>
-                            <h3 class="text-lg font-semibold text-gray-700">Description</h3>
-                            <p class="text-gray-600">${project.description}</p>
-                        </div>
-                        <div>
-                            <h3 class="text-lg font-semibold text-gray-700">Date de Début</h3>
-                            <p class="text-gray-600">${project.dateDebut}</p>
-                        </div>
-                        <div>
-                            <h3 class="text-lg font-semibold text-gray-700">Date de Fin</h3>
-                            <p class="text-gray-600">${project.dateFin}</p>
-                        </div>
-                        <div>
-                            <h3 class="text-lg font-semibold text-gray-700">Budget</h3>
-                            <p class="text-gray-600">${project.budget}</p>
-                        </div>
-                    </div>
-                </c:if>
-                <!-- Add Task Button -->
-                <div class="flex justify-end mt-6">
-                    <a href="ProjectServlet?action=addTask&projectId=${project.getId_project()}" class="text-white bg-blue-900 shadow-md hover:bg-blue-800 px-3 py-2 rounded-full">
-                        <i class="fa-solid fa-plus"></i> Ajouter Tâche
-                    </a>
+    <div class="container mx-auto mt-8 flex flex-wrap md:flex-nowrap gap-4">
+    <!-- Project Details Card -->
+    <div class="bg-white p-6 rounded-lg shadow-lg w-full md:w-2/2 flex-grow flex-shrink">
+        <h2 class="text-2xl font-bold mb-4 text-gray-800">Détails du Projet</h2>
+        <c:if test="${project ne null}">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                    <h3 class="text-lg font-semibold text-gray-700">Nom</h3>
+                    <p class="text-gray-600">${project.nom}</p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold text-gray-700">Description</h3>
+                    <p class="text-gray-600">${project.description}</p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold text-gray-700">Date de Début</h3>
+                    <p class="text-gray-600">${project.dateDebut}</p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold text-gray-700">Date de Fin</h3>
+                    <p class="text-gray-600">${project.dateFin}</p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold text-gray-700">Budget</h3>
+                    <p class="text-gray-600">${project.budget}</p>
                 </div>
             </div>
+        </c:if>
+        <!-- Add Task Button -->
+        <div class="flex justify-end mt-6">
+            <a href="ProjectServlet?action=addTask&projectId=${project.getId_project()}" class="text-white bg-blue-900 shadow-md hover:bg-blue-800 px-3 py-2 rounded-full">
+                <i class="fa-solid fa-plus"></i> Ajouter Tâche
+            </a>
         </div>
+    </div>
+</div>
 
-       <!-- Task Details Card -->
-<div class="flex flex-col md:flex-row gap-4 mt-8">
-    <div class="bg-white p-6 rounded-lg shadow-lg w-full md:w-2/2">
+<!-- Task Details Card -->
+<div class="container mx-auto mt-8 flex flex-wrap md:flex-nowrap gap-4">
+    <div class="bg-white p-6 rounded-lg shadow-lg w-full md:w-2/2 flex-grow flex-shrink">
         <h2 class="text-2xl font-bold mb-4 text-gray-800">Détails des Tâches</h2>
         <c:forEach var="task" items="${tasks}">
             <div class="mb-6 border-b border-gray-200 pb-4">
@@ -89,31 +85,29 @@
                         <span class="text-gray-700 font-semibold">${task.dateFin}</span>
                     </div>
                 </div>
-                <div class="flex justify-between mt-4">
-<form id="deleteTaskForm_${task.id_tache}" action="ProjectServlet" method="post" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cette tâche ?');">
-    <input type="hidden" name="action" value="deleteTask">
-    <input type="hidden" name="taskId" value="${task.id_tache}">
-    <button type="submit" class="text-white bg-red-400 shadow-md hover:bg-red-500 px-3 py-1 rounded-full">
-        Supprimer
-    </button>
-</form>
+                <form action="ProjectServlet" method="post" class="mt-2">
+                    <input type="hidden" name="action" value="changeTaskStatus">
+                    <input type="hidden" name="taskId" value="${task.id_tache != null ? task.id_tache : ''}">
+                    <input type="hidden" name="projectId" value="${project.id_project != null ? project.id_project : ''}">
+                    <select name="status" onchange="this.form.submit()" class="mt-2 px-2 py-1 border border-gray-300 rounded-full">
+                        <option value="A faire" ${task.status == 'A faire' ? 'selected' : ''}>À faire</option>
+                        <option value="En cours" ${task.status == 'En cours' ? 'selected' : ''}>En cours</option>
+                        <option value="Terminé" ${task.status == 'Terminé' ? 'selected' : ''}>Terminé</option>
+                    </select>
+                                    <form id="deleteTaskForm_${task.id_tache}" action="ProjectServlet" method="post" onsubmit="return confirm('Are you sure you want to delete this task?');">
+                    <input type="hidden" name="action" value="deleteTask">
+                    <input type="hidden" name="taskId" value="${task.id_tache}">
+                    <button type="submit" class="text-white bg-red-400 shadow-md hover:bg-red-500 px-3 py-1 rounded-full">
+                        Supprimer
+                    </button>
+                </form>
+                </form>
 
-
-
-<%--                     <form id="editTaskForm_${task.id_tache}" action="<c:url value='ProjectServlet'/>" method="post"> --%>
-<!--                         <input type="hidden" name="action" value="editTask"> -->
-<%--                         <input type="hidden" name="taskId" value="${task.id_tache}"> --%>
-<%--                         <button type="button" onclick="editTask(${task.id_tache});" class="text-white bg-blue-400 shadow-md hover:bg-blue-500 px-3 py-1 rounded-full"> --%>
-<!--                             Modifier -->
-<!--                         </button> -->
-<!--                     </form> -->
-                </div>
             </div>
         </c:forEach>
     </div>
-</div>
+
 
     </div>
 </body>
 </html>
-                                
