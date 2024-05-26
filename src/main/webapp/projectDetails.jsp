@@ -94,15 +94,17 @@
                         <option value="En cours" ${task.status == 'En cours' ? 'selected' : ''}>En cours</option>
                         <option value="Terminé" ${task.status == 'Terminé' ? 'selected' : ''}>Terminé</option>
                     </select>
-                                    <form id="deleteTaskForm_${task.id_tache}" action="ProjectServlet" method="post" onsubmit="return confirm('Are you sure you want to delete this task?');">
+                </form>
+                
+                <br>
+                
+                <form id="deleteTaskForm_${task.id_tache}" action="ProjectServlet" method="post" onsubmit="return confirm('Are you sure you want to delete this task?');">
                     <input type="hidden" name="action" value="deleteTask">
                     <input type="hidden" name="taskId" value="${task.id_tache}">
                     <button type="submit" class="text-white bg-red-400 shadow-md hover:bg-red-500 px-3 py-1 rounded-full">
                         Supprimer
                     </button>
                 </form>
-                </form>
-
             </div>
         </c:forEach>
     </div>
