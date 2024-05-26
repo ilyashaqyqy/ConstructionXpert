@@ -58,40 +58,45 @@ public class ProjectServlet extends HttpServlet {
                 int detailsId = Integer.parseInt(request.getParameter("id"));
                 Project projectDetails = projectDao.getProjectById(detailsId);
                 
-                // Fetch tasks for the project using the instance of TacheDao
+      
                 List<Tache> tasks = tacheDao.getTasksByProjectId(detailsId); 
                 
                 request.setAttribute("project", projectDetails);
-                request.setAttribute("tasks", tasks); // Pass tasks to the JSP
+                request.setAttribute("tasks", tasks); 
                 request.getRequestDispatcher("projectDetails.jsp").forward(request, response);
                 break;
 
 
                 
             case "tache":
-                // Fetch all tasks
+              
                 List<Tache> allTasks = tacheDao.getAllTasks();
                 
-                // Forward tasks to tache.jsp
+             
                 request.setAttribute("tasks", allTasks);
                 request.getRequestDispatcher("tache.jsp").forward(request, response);
                 break;
 
-            case "addTask": // Handle addTask action
+            case "addTask": 
                 int projectId = Integer.parseInt(request.getParameter("projectId"));
-                List<Ressource> resources = ressourceDao.getAllressource(); // Retrieve all resources
+                List<Ressource> resources = ressourceDao.getAllressource(); 
                 request.setAttribute("projectId", projectId);
-                request.setAttribute("resources", resources); // Pass resources to the addTask.jsp
+                request.setAttribute("resources", resources); 
                 request.getRequestDispatcher("addTask.jsp").forward(request, response);
                 break;
                 
             case "listResources":
-                // Fetch all resources
+               
                 List<Ressource> allResources = ressourceDao.getAllressource();
                 
-                // Forward resources to the resource.jsp
+               
                 request.setAttribute("resources", allResources);
                 request.getRequestDispatcher("resource.jsp").forward(request, response);
+                break;
+
+                
+            case "addResource":
+                request.getRequestDispatcher("addResource.jsp").forward(request, response);
                 break;
 
                 
@@ -132,7 +137,7 @@ public class ProjectServlet extends HttpServlet {
             projectDao.update(project);
 
             response.sendRedirect(request.getContextPath() + "/");
-        } else if ("addTask".equals(action)) { // Add task functionality
+        } else if ("addTask".equals(action)) { 
             int projectId = Integer.parseInt(request.getParameter("projectId"));
             int resourceId = Integer.parseInt(request.getParameter("resourceId"));
             String nom = request.getParameter("nom");
@@ -141,7 +146,7 @@ public class ProjectServlet extends HttpServlet {
             String dateFinStr = request.getParameter("dateFin");
             String status = request.getParameter("status");
 
-            // Convert date strings to java.sql.Date objects
+          
             java.sql.Date dateDebut = java.sql.Date.valueOf(dateDebutStr);
             java.sql.Date dateFin = java.sql.Date.valueOf(dateFinStr);
 
@@ -151,40 +156,56 @@ public class ProjectServlet extends HttpServlet {
    
             Tache tache = new Tache(projectId, resourceId, nom, description, dateDebut, dateFin, status);
 
-            // Save the task using TacheDao
+           
             Tache savedTache = tacheDao.save(tache);
 
 
-            // Redirect back to the project details page
+            
             response.sendRedirect(request.getContextPath() + "/?action=details&id=" + projectId);
 
-        } else if ("changeTaskStatus".equals(action)) { // Add task status change functionality
+        } else if ("changeTaskStatus".equals(action)) { 
             String taskIdString = request.getParameter("taskId");
-            int taskId = -1; // Default value in case taskIdString is null
+            int taskId = -1; 
             if (taskIdString != null && !taskIdString.isEmpty()) {
                 taskId = Integer.parseInt(taskIdString);
             }
             String status = request.getParameter("status");
 
-            // Retrieve projectId from request parameters
+            
             String projectIdString = request.getParameter("projectId");
-            int projectId = -1; // Default value in case projectIdString is null
+            int projectId = -1; 
             if (projectIdString != null && !projectIdString.isEmpty()) {
                 projectId = Integer.parseInt(projectIdString);
             }
 
-            // Update the status of the task using TacheDao
+           
             TacheDao tacheDao = new TacheDao();
             tacheDao.updateTaskStatus(taskId, status);
 
-            // Redirect back to the project details page
+           
             response.sendRedirect(request.getContextPath() + "/?action=details&id=" + projectId);
         }
+        
+        else if ("deleteTask".equals(action)) {
+            String taskIdString = request.getParameter("taskId");
+            if (taskIdString != null && !taskIdString.isEmpty()) {
+                int taskId = Integer.parseInt(taskIdString);
+                TacheDao tacheDao = new TacheDao();
+                tacheDao.delete(taskId);
+                
+                String projectIdString = request.getParameter("projectId");
+                int projectId = -1; // Default value in case projectIdString is null
+                if (projectIdString != null && !projectIdString.isEmpty()) {
+                    projectId = Integer.parseInt(projectIdString);
+                }
+                response.sendRedirect(request.getHeader("referer"));
+            }
+        }
 
-
-           else {
+        
+       else {
             String nom = request.getParameter("nom");
-            String description = request.getParameter("description");
+            String description = request.getParameter("description"); 
             String dateDebutStr = request.getParameter("dateDebut");
             String dateFinStr = request.getParameter("dateFin");
             String budgetStr = request.getParameter("budget");

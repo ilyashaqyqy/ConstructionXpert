@@ -24,12 +24,17 @@
     </nav>
 
 
+<a href="ProjectServlet?action=addResource" class="text-white bg-green-400 shadow-md hover:bg-green-500 px-3 py-1 rounded-full">
+    Ajouter Ressource
+</a>
+
+
     <div class="container mx-auto mt-10">
         <h1 class="text-3xl font-bold mb-6">Liste des Ressources</h1>
         <table class="min-w-full bg-white border border-gray-200">
             <thead>
                 <tr>
-                    <th class="py-2 px-4 border-b">ID</th>
+<!--                     <th class="py-2 px-4 border-b">ID</th> -->
                     <th class="py-2 px-4 border-b">Name</th>
                     <th class="py-2 px-4 border-b">Type</th>
                     <th class="py-2 px-4 border-b">Quantity</th>
@@ -39,7 +44,7 @@
             <tbody>
                 <c:forEach var="resource" items="${resources}">
                     <tr>
-                        <td class="py-2 px-4 border-b">${resource.id_ressource}</td>
+<%--                         <td class="py-2 px-4 border-b">${resource.id_ressource}</td> --%>
                         <td class="py-2 px-4 border-b">${resource.nom}</td>
                         <td class="py-2 px-4 border-b">${resource.type}</td>
                         <td class="py-2 px-4 border-b">${resource.quantite}</td>
