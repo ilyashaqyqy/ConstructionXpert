@@ -13,6 +13,7 @@ public interface IResourceDao {
 	public Ressource update (Ressource r);
 	public void deleteRessource(int id);
 	public Ressource getRessourceById(int id);
+	public List <Ressource> getAllressourcetache();
 	
 	
 }

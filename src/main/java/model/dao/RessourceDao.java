@@ -72,6 +72,36 @@ public class RessourceDao implements IResourceDao {
         return ressourceList;
     }
 
+    
+	@Override
+	public List<Ressource> getAllressourcetache() {
+	       Connection cn = SingletonConnection.getConnection();
+	       List<Ressource> ressourceList = new ArrayList<>();
+	       try {
+	            PreparedStatement ps = cn.prepareStatement("SELECT * FROM Ressource");
+	            ResultSet rs = ps.executeQuery();
+	            
+	            while (rs.next()) {
+	                Ressource ressource = new Ressource();
+	                ressource.setId_ressource(rs.getInt("id_ressource")); 
+	                ressource.setNom(rs.getString("nom"));
+	                ressource.setType(rs.getString("type"));
+	                ressource.setQuantite(rs.getInt("quantite"));
+	                ressource.setInfoFournisseur(rs.getString("infoFournisseur"));
+	                
+	                ressourceList.add(ressource);
+	            }
+	            
+	            rs.close();
+	            ps.close();
+	            
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	        
+	        return ressourceList;
+	}
+    
     @Override
     public List<Ressource> RessourceParMc(String mc) {
         Connection cn = SingletonConnection.getConnection();
@@ -189,5 +219,7 @@ public class RessourceDao implements IResourceDao {
 
         return ressource;
     }
+
+
 }
 

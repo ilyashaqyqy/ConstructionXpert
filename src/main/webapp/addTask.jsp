@@ -6,12 +6,48 @@
 <head>
     <title>Ajouter une tâche</title>
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <script>
+        function validateTaskForm() {
+            const nom = document.getElementById('nom').value.trim();
+            const description = document.getElementById('description').value.trim();
+            const dateDebut = document.getElementById('dateDebut').value;
+            const dateFin = document.getElementById('dateFin').value;
+            const resourceId = document.getElementById('resourceId').value;
+
+            if (!nom) {
+                alert("Le nom de la tâche est requis.");
+                return false;
+            }
+            if (!description) {
+                alert("La description de la tâche est requise.");
+                return false;
+            }
+            if (!dateDebut) {
+                alert("La date de début est requise.");
+                return false;
+            }
+            if (!dateFin) {
+                alert("La date de fin est requise.");
+                return false;
+            }
+            if (new Date(dateDebut) >= new Date(dateFin)) {
+                alert("La date de début doit être antérieure à la date de fin.");
+                return false;
+            }
+            if (!resourceId) {
+                alert("La ressource est requise.");
+                return false;
+            }
+
+            return true; 
+        }
+    </script>
 </head>
 <body>
 
 <div class="max-w-md mx-auto">
     <div class="bg-white shadow-md rounded-lg p-6">
-        <form action="ProjectServlet" method="post">
+        <form action="ProjectServlet" method="post" onsubmit="return validateTaskForm()">
             <input type="hidden" name="action" value="addTask">
             <input type="hidden" name="projectId" value="${projectId}">
             <div class="mb-4">
@@ -32,8 +68,7 @@
             </div>
             <div class="mb-4">
                 <label for="status" class="block text-gray-700 text-sm font-bold mb-2">Statut :</label>
-    <input type="text" id="status" name="status" value="A faire" readonly class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-
+                <input type="text" id="status" name="status" value="A faire" readonly class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
             </div>
             <div class="mb-4">
                 <label for="resourceId" class="block text-gray-700 text-sm font-bold mb-2">Sélectionner la ressource :</label>
@@ -45,7 +80,7 @@
                 </select>
             </div>
             <div class="flex items-center justify-end">
-                <button type="submit" class="text-white bg-blue-900  hover:bg-blue-800 px-3 py-2 ml-2 rounded-full">Ajouter la tâche</button>
+                <button type="submit" class="text-white bg-blue-900 hover:bg-blue-800 px-3 py-2 ml-2 rounded-full">Ajouter la tâche</button>
             </div>
         </form>
     </div>
